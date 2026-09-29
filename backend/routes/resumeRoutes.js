@@ -1,0 +1,10 @@
+import express from "express";
+import {uploadResume,analyzeUploadedResume,getMyResume,matchResumeWithJob} from "../controllers/resumecontroller.js";
+import  authMiddleware from "../middleware/authmiddleware.js";
+import upload from "../middleware/uploadmiddleware.js";
+const router=express.Router();
+router.post("/upload",authMiddleware,upload.single("resume"),uploadResume);
+router.post("/analyze/:id",authMiddleware,analyzeUploadedResume);
+router.post("/match/:resumeId/:jobId",authMiddleware,matchResumeWithJob);
+router.get("/my-resume",authMiddleware,getMyResume);
+export default router;

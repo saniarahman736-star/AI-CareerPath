@@ -1,0 +1,10 @@
+import express from "express";
+import { createJob,getAllJobs,matchJobs,aiMatchJobs,getJobById } from "../controllers/jobcontroller.js";
+import authMiddleware from "../middleware/authmiddleware.js";
+const router=express.Router();
+router.post("/",createJob);
+router.get("/",getAllJobs);
+router.get("/match",authMiddleware,matchJobs);
+router.get("/ai-match",authMiddleware,aiMatchJobs);
+router.get("/:id",getJobById);
+export default router;
